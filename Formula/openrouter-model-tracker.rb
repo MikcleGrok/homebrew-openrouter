@@ -5,54 +5,29 @@ class OpenrouterModelTracker < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.20/openrouter-1.14.20-darwin-arm64.tar.gz"
-      sha256 "0cf738b961a7ba71516f4a55c1aa5dfe11a89c7efcaee2705017bdf97f2b88b0"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.21/openrouter-1.14.21-darwin-arm64.tar.gz"
+      sha256 "b150c50d895b99663704e647ad13e6968e629eb24343ebc0dd7517580e1fed36"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.20/openrouter-1.14.20-darwin-amd64.tar.gz"
-      sha256 "6976b92685771958adf4754702e2807a66d1b19dd088dd69f0b5d53e3fab205d"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.21/openrouter-1.14.21-darwin-amd64.tar.gz"
+      sha256 "c16e6dd41ddbde6a877ca376c50a95fc2aa49e37ea9c9068d88ce7ee25644e09"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.20/openrouter-1.14.20-linux-arm64.tar.gz"
-      sha256 "3c7994edf4696775f3ac92505db3eb06a9c93685993c2a8be8d92ccf2bfd183e"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.21/openrouter-1.14.21-linux-arm64.tar.gz"
+      sha256 "4dad226bee0462da228d76acdfeef392b8f5218a2e77a40b82454cc47ee5f6b8"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.20/openrouter-1.14.20-linux-amd64.tar.gz"
-      sha256 "fc593b8b121d26410bade63d09c559fc263e7604f14a6e7837878eb96efc8034"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.21/openrouter-1.14.21-linux-amd64.tar.gz"
+      sha256 "7a3b0a34b6db2e8a650c2f96f6a5a115beaf3638e78866ecfc31ede58d384845"
     end
   end
 
   def install
     bin.install Dir["openrouter-*"].first => "openrouter-model-tracker"
     bin.install_symlink "openrouter-model-tracker" => "omt"
-
-    generate_completions_from_executable(bin/"openrouter-model-tracker", shell_parameter_format: :cobra,
-                                                                         shells:                 [:bash])
-
-    # Cobra derives the `complete -F <func> <name>` registration in the
-    # generated script from the root command's `Use:` ("openrouter"), not
-    # from the name(s) this formula actually installs the binary under, so
-    # neither real invocation name works out of the box. Append explicit
-    # registrations for both `openrouter-model-tracker` and `omt` onto the
-    # same completion function the generated script defines.
-    completion_script = bash_completion/"openrouter-model-tracker"
-    completion_script.write(<<~BASH, mode: "a")
-
-      if [[ $(type -t compopt) = "builtin" ]]; then
-          complete -o default -F __start_openrouter openrouter-model-tracker
-          complete -o default -F __start_openrouter omt
-      else
-          complete -o default -o nospace -F __start_openrouter openrouter-model-tracker
-          complete -o default -o nospace -F __start_openrouter omt
-      fi
-    BASH
-
-    # bash-completion's dynamic loader finds a script by the exact command
-    # name being completed, so `omt` needs its own filename too.
-    bash_completion.install_symlink "openrouter-model-tracker" => "omt"
   end
 
   test do
