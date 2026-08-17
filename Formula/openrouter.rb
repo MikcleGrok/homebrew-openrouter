@@ -1,7 +1,6 @@
 class Openrouter < Formula
   desc "Regenerate the OpenRouter model comparison document from live data"
   homepage "https://openrouter.ai/"
-  version "1.14.20"
   license "MIT"
 
   on_macos do
