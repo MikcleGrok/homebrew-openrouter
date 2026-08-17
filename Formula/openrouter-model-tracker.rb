@@ -28,6 +28,31 @@ class OpenrouterModelTracker < Formula
   def install
     bin.install Dir["openrouter-*"].first => "openrouter-model-tracker"
     bin.install_symlink "openrouter-model-tracker" => "omt"
+
+    generate_completions_from_executable(bin/"openrouter-model-tracker", shell_parameter_format: :cobra,
+                                                                         shells:                 [:bash])
+
+    # Cobra derives the `complete -F <func> <name>` registration in the
+    # generated script from the root command's `Use:` ("openrouter"), not
+    # from the name(s) this formula actually installs the binary under, so
+    # neither real invocation name works out of the box. Append explicit
+    # registrations for both `openrouter-model-tracker` and `omt` onto the
+    # same completion function the generated script defines.
+    completion_script = bash_completion/"openrouter-model-tracker"
+    completion_script.write(<<~BASH, mode: "a")
+
+      if [[ $(type -t compopt) = "builtin" ]]; then
+          complete -o default -F __start_openrouter openrouter-model-tracker
+          complete -o default -F __start_openrouter omt
+      else
+          complete -o default -o nospace -F __start_openrouter openrouter-model-tracker
+          complete -o default -o nospace -F __start_openrouter omt
+      fi
+    BASH
+
+    # bash-completion's dynamic loader finds a script by the exact command
+    # name being completed, so `omt` needs its own filename too.
+    bash_completion.install_symlink "openrouter-model-tracker" => "omt"
   end
 
   test do
