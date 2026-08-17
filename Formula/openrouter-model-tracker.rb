@@ -1,4 +1,4 @@
-class Openrouter < Formula
+class OpenrouterModelTracker < Formula
   desc "Regenerate the OpenRouter model comparison document from live data"
   homepage "https://openrouter.ai/"
   license "MIT"
