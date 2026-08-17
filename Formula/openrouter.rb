@@ -27,12 +27,15 @@ class Openrouter < Formula
   end
 
   def install
-    bin.install Dir["openrouter-*"].first => "openrouter"
+    bin.install Dir["openrouter-*"].first => "openrouter-model-tracker"
+    bin.install_symlink "openrouter-model-tracker" => "omt"
   end
 
   test do
-    assert_equal "openrouter #{version}\n", shell_output("#{bin}/openrouter version")
-    assert_equal "openrouter version #{version}\n", shell_output("#{bin}/openrouter --version")
-    system bin/"openrouter", "--help"
+    assert_equal "openrouter #{version}\n", shell_output("#{bin}/openrouter-model-tracker version")
+    assert_equal "openrouter version #{version}\n", shell_output("#{bin}/openrouter-model-tracker --version")
+    system bin/"openrouter-model-tracker", "--help"
+    assert_predicate bin/"omt", :symlink?
+    assert_equal "openrouter version #{version}\n", shell_output("#{bin}/omt --version")
   end
 end
