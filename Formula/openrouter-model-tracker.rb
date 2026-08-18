@@ -5,23 +5,23 @@ class OpenrouterModelTracker < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.29/openrouter-1.14.29-darwin-arm64.tar.gz"
-      sha256 "3c0b75183298967317fc77e2ce03901e1dd0ef99730240775d78f3578659c32a"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.30/openrouter-1.14.30-darwin-arm64.tar.gz"
+      sha256 "b5df95e3ba2448655ee0e7fa005fe511d5fe253aad6aff426819c4d785378e45"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.29/openrouter-1.14.29-darwin-amd64.tar.gz"
-      sha256 "79caa3cff3e95b0d0e29a5f26769a486e33eae247fa99588292ed2311a40cc61"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.30/openrouter-1.14.30-darwin-amd64.tar.gz"
+      sha256 "2db2d0e224190a52d2dd8f8586f85fc5e1e5e77ae570474609eea14ff032b020"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.29/openrouter-1.14.29-linux-arm64.tar.gz"
-      sha256 "9b786a02508e4421313d7567e0d3a444262300337a312b91c0a305afd4a35420"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.30/openrouter-1.14.30-linux-arm64.tar.gz"
+      sha256 "e38e26336a40f0f84732de6323f80a6abda6c1f0dd2a2ee38017d5db36995565"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.29/openrouter-1.14.29-linux-amd64.tar.gz"
-      sha256 "ec5c426a44e690c6f5726ae90817d74ef319ab5e604aa7cf99a619c2d3972a0f"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.14.30/openrouter-1.14.30-linux-amd64.tar.gz"
+      sha256 "b63dffa525b3bcfafc7e94f469d9ace4b1738c9c8319e2fd67fde96a3c5a0605"
     end
   end
 
